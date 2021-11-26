@@ -46,7 +46,7 @@
     "prettier": "^2.5.0"
   },
   "lint-staged": {
-    "src/**/*.{ts.tsx}": [
+    "src/**/*.{ts,tsx}": [
       "prettier --write"
     ]
   }
