@@ -1,8 +1,15 @@
+import * as React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Product from '../components/Product';
-import products from '../products';
+import Product, { ProductItem } from '../components/Product';
+import { getProducts } from '../utils/products';
 
 function HomePage() {
+  const [products, setProducts] = React.useState<ProductItem[]>([]);
+
+  React.useEffect(() => {
+    getProducts().then((data) => setProducts(data));
+  }, []);
+
   return (
     <>
       <h1>Latest Products</h1>

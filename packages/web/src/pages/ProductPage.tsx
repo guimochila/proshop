@@ -1,12 +1,19 @@
+import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import products from '../products';
+import { getProductById } from '../utils/products';
 
 function ProductPage() {
+  const [product, setProduct] = React.useState();
   /* Params: id: string */
   const params = useParams();
-  const product = products.find((prod) => prod._id === params.id);
+
+  React.useEffect(() => {
+    if (params.id) {
+      getProductById(params.id).then((data) => setProduct(data));
+    }
+  }, [params.id]);
 
   if (!product) {
     return <h2>Product not found</h2>;

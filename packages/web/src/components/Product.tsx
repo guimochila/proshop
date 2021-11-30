@@ -4,7 +4,7 @@ import Rating from './Rating';
 
 import styles from '../styles/Product.module.css';
 
-type ProductItem = {
+export type ProductItem = {
   _id: string;
   name: string;
   image: string;
