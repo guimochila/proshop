@@ -1,22 +1,37 @@
 import express, { Response, Request } from 'express';
-// @ts-ignore: Unreachable code error
-import products from '../../data/products.js';
+
+import Product from '../models/Product';
+import { catchErrors } from '../utils/errorHandler';
 
 function getProductsRoutes() {
   const router = express.Router();
 
-  router.get('/', getProducts);
-  router.get('/:id', getProductById);
+  router.get('/', catchErrors(getProducts));
+  router.get('/:id', catchErrors(getProductById));
 
   return router;
 }
 
-function getProducts(req: Request, res: Response) {
+/* Controllers */
+
+async function getProducts(req: Request, res: Response) {
+  const products = await Product.find({});
+
+  if (!products) {
+    res.status(404);
+    throw new Error('Products not found');
+  }
+
   res.json(products);
 }
 
-function getProductById(req: Request, res: Response) {
-  const product = products.find((p: any) => p._id === req.params.id);
+async function getProductById(req: Request, res: Response) {
+  const product = await Product.findById(req.params.id);
+
+  if (!product) {
+    res.status(404);
+    throw new Error('Product not found');
+  }
 
   res.json(product);
 }

@@ -2,8 +2,7 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
-    "rootDir": "./src",
-    "baseUrl": "./src",
+    "rootDir": ".",
     "moduleResolution": "node",
     "outDir": "dist",
     "esModuleInterop": true,
@@ -12,6 +11,6 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["./src/**/*", "./config"],
+  "include": ["./src/**/*", "./config", "./data"],
   "exclude": ["node_modules", "dist"]
 }

@@ -3,6 +3,11 @@ import config from 'config';
 import app from './app';
 import { logger } from './utils/logger';
 
+/* Initialize database */
+import { init } from './utils/database';
+init();
+
+/* Http server */
 const PORT = config.get('port');
 const HOST = config.get('host');
 
