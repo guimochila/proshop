@@ -7,6 +7,7 @@ import Header from './components/Header';
 
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const ProductPage = React.lazy(() => import('./pages/ProductPage'));
+const CartPage = React.lazy(() => import('./pages/CartPage'));
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/cart" element={<CartPage />} />
               </Routes>
             </React.Suspense>
           </Container>

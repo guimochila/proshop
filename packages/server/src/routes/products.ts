@@ -22,7 +22,12 @@ async function getProducts(req: Request, res: Response) {
     throw new Error('Products not found');
   }
 
-  res.json(products);
+  res.json(
+    products.reduce(
+      (obj, item) => Object.assign(obj, { [item._id]: item }),
+      {},
+    ),
+  );
 }
 
 async function getProductById(req: Request, res: Response) {
@@ -33,7 +38,7 @@ async function getProductById(req: Request, res: Response) {
     throw new Error('Product not found');
   }
 
-  res.json(product);
+  res.json({ [product._id]: product });
 }
 
 export { getProductsRoutes };

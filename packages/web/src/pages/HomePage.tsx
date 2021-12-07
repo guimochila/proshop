@@ -1,22 +1,27 @@
 import * as React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Product, { ProductItem } from '../components/Product';
-import { getProducts } from '../utils/products';
+import Product from '../components/Product';
+import { useAppDispatch, useAppSelector } from '../store';
+import {
+  fetchProducts,
+  selectProducts,
+} from '../store/reducers/product.reducer';
 
 function HomePage() {
-  const [products, setProducts] = React.useState<ProductItem[]>([]);
+  const products = useAppSelector(selectProducts);
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    getProducts().then((data) => setProducts(data));
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <>
       <h1>Latest Products</h1>
       <Row>
-        {products.map((item) => (
-          <Col key={item._id} sm={6} md={6} lg={4} xl={3}>
-            <Product item={item} />
+        {Object.keys(products).map((item) => (
+          <Col key={products[item]._id} sm={6} md={6} lg={4} xl={3}>
+            <Product item={products[item]} />
           </Col>
         ))}
       </Row>
