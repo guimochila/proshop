@@ -1,6 +1,9 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import helmet from 'helmet';
+import config from 'config';
+
+const frontendUrl: string = config.get('frontendUrl');
 
 function loader(app: Application) {
   app.use(helmet());
@@ -14,7 +17,11 @@ function loader(app: Application) {
     res.status(200).send();
   });
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: frontendUrl,
+    }),
+  );
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 

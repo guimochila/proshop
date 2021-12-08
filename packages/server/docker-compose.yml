@@ -4,7 +4,7 @@ services:
   proshop:
     image: guimochila/proshop-backend
     depends_on:
-      - mongodb
+      - proshop-mongo
     networks:
       - traefik-public
       - traefik-internal
@@ -15,7 +15,7 @@ services:
       - traefik.http.routers.proshop.entrypoints=web-secure
       - traefik.http.routers.proshop.tls=true
 
-  mongodb:
+  proshop-mongo:
     image: mongo:latest
     restart: always
     volumes:
