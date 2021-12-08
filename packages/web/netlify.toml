@@ -1,0 +1,13 @@
+[build]
+  base = "packages/web"
+  command = "CI=false yarn build"
+
+[context.production]
+  publish = "packages/web/build"
+  [context.production.environment]
+    REACT_APP_API_URL = "https://api.guimochila.com"
+
+[[redirects]]
+  from = "/*"
+  to = "index.html"
+  status = 200
