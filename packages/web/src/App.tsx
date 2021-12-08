@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Footer from './components/Footer';
+import GlobalLoader from './components/GlobalLoader';
 import Header from './components/Header';
 
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -16,7 +17,7 @@ function App() {
         <Header />
         <main className="py-3">
           <Container>
-            <React.Suspense fallback={<p>Loading...</p>}>
+            <React.Suspense fallback={<GlobalLoader />}>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/product/:id" element={<ProductPage />} />
@@ -26,6 +27,7 @@ function App() {
           </Container>
         </main>
         <Footer />
+        <GlobalLoader />
       </div>
     </Router>
   );

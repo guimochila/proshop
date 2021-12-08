@@ -1,6 +1,6 @@
 import { client } from './api-client';
 
-function getProducts() {
+function fetchProducts() {
   return client('products');
 }
 
@@ -8,4 +8,4 @@ function getProductById(id: string) {
   return client(`products/${id}`);
 }
 
-export { getProducts, getProductById };
+export { fetchProducts, getProductById };

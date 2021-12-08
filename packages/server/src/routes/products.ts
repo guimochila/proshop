@@ -38,7 +38,7 @@ async function getProductById(req: Request, res: Response) {
     throw new Error('Product not found');
   }
 
-  res.json({ [product._id]: product });
+  res.json(product);
 }
 
 export { getProductsRoutes };

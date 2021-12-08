@@ -1,46 +1,27 @@
 import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  ListGroupItem,
-  Form,
-} from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import { useAppDispatch } from '../store';
-import {
-  fetchProductById,
-  selectProductById,
-  selectReqStatus,
-} from '../store/reducers/product.reducer';
-import { useSelector } from 'react-redux';
+import useProduct from '../hooks/useProduct';
+import QuantitySelector from '../components/QuantitySelector';
 
 function ProductPage() {
   /* Params: id: string */
   const params = useParams();
-  const [quantity, setQuantity] = React.useState(0);
-  const product = useSelector(selectProductById(params.id as string));
-  const status = useSelector(selectReqStatus);
-  const dispatch = useAppDispatch();
+  const { data: product, isLoading } = useProduct(params.id || '');
+  const addToCartHandler = () => {};
 
-  React.useEffect(() => {
-    if (params.id) {
-      dispatch(fetchProductById(params.id));
-    }
-  }, [dispatch, params.id]);
-
-  if ((status === 'idle' || status === 'pending') && product === undefined)
-    return null;
-
-  if (status === 'rejected' && product === undefined) {
-    return <h2>Product not found</h2>;
+  if (isLoading) {
+    return <span>Loading...</span>;
   }
 
-  const addToCartHandler = () => {};
+  if (!product) {
+    return <span>Product not found</span>;
+  }
+
+  const handleQuantityChange = (value: string) => {
+    console.log(value);
+  };
 
   const { image, name, rating, numReviews, price, description, countInStock } =
     product;
@@ -88,26 +69,10 @@ function ProductPage() {
                 </Row>
               </ListGroup.Item>
               {countInStock > 0 && (
-                <ListGroupItem>
-                  <Row>
-                    <Col> Quantity</Col>
-                    <Col>
-                      <Form.Control
-                        as="select"
-                        value={quantity}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
-                      >
-                        {Array.from(Array(product.countInStock).keys()).map(
-                          (item) => (
-                            <option key={item + 1} value={item + 1}>
-                              {item + 1}
-                            </option>
-                          ),
-                        )}
-                      </Form.Control>
-                    </Col>
-                  </Row>
-                </ListGroupItem>
+                <QuantitySelector
+                  initialQuantity={countInStock}
+                  onChangeHandler={handleQuantityChange}
+                />
               )}
               <ListGroup.Item>
                 <Button

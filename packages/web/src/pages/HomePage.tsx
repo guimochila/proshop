@@ -1,19 +1,17 @@
-import * as React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
-import { useAppDispatch, useAppSelector } from '../store';
-import {
-  fetchProducts,
-  selectProducts,
-} from '../store/reducers/product.reducer';
+import useProducts from '../hooks/useProducts';
 
 function HomePage() {
-  const products = useAppSelector(selectProducts);
-  const dispatch = useAppDispatch();
+  const { data: products, isLoading } = useProducts();
 
-  React.useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  if (isLoading) {
+    return <span> Loading...</span>;
+  }
+
+  if (!products) {
+    return <span>No products found</span>;
+  }
 
   return (
     <>
