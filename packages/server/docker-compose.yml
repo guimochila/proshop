@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  proshop:
+    image: guimochila/proshop-backend
+    depends_on:
+      - mongodb
+    networks:
+      - traefik-public
+      - traefik-internal
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=public
+      - traefik.http.routers.proshop.rule=Host(`api.guimochila.com`)&&Headers(`x-app`, `proshop`)
+      - traefik.http.routers.proshop.entrypoints=web-secure
+      - traefik.http.routers.proshop.tls=true
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - proshopdb:/data/db
+    networks:
+      - traefik-internal
+
+networks:
+  traefik-public:
+    external: true
+  traefik-internal:
+    external: true
+
+volumes:
+  proshopdb:
