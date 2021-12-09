@@ -8,6 +8,10 @@ services:
     networks:
       - traefik-public
       - traefik-internal
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DATABASE_URL=${DATABASE_URL}
+      - FRONTEND_URL=${FRONTEND_URL}
     labels:
       - traefik.enable=true
       - traefik.docker.network=public
