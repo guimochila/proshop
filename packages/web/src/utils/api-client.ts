@@ -1,5 +1,5 @@
 function client(endpoint: string, { body, ...customConfig }: RequestInit = {}) {
-  const headers = { 'Content-Type': 'application/json' };
+  const headers = { 'Content-Type': 'application/json', 'x-app': 'proshop' };
   const config = {
     method: body ? 'POST' : 'GET',
     ...customConfig,
