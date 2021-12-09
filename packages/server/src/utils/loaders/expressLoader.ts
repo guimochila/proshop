@@ -19,7 +19,7 @@ function loader(app: Application) {
 
   app.use(
     cors({
-      origin: frontendUrl,
+      origin: [frontendUrl],
     }),
   );
   app.use(express.json());

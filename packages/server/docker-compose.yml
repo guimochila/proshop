@@ -15,7 +15,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.proshop.rule=Host(`api.guimochila.com`)&&Headers(`x-app`, `proshop`)
+      - traefik.http.routers.proshop.rule=Host(`api.guimochila.com`)&&Headers(`x-app`, `proshop`)||Headers(`origin`, `https://proshop.guimochila.com`)
       - traefik.http.routers.proshop.entrypoints=web-secure
       - traefik.http.routers.proshop.tls=true
 
