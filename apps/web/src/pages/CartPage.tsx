@@ -1,5 +1,5 @@
-import { Col, Row, ListGroup, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Col, Row, ListGroup, Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function CartPage() {
   return (
@@ -41,7 +41,7 @@ function CartPage() {
         </Card>
       </Col>
     </Row>
-  );
+  )
 }
 
-export default CartPage;
+export default CartPage

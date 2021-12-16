@@ -1,30 +1,30 @@
-import * as React from 'react';
-import { Col, Form, ListGroupItem, Row } from 'react-bootstrap';
+import * as React from 'react'
+import { Col, Form, ListGroupItem, Row } from 'react-bootstrap'
 
 type Props = {
-  initialQuantity: number;
-  onChangeHandler?: (value: string) => any;
-};
+  initialQuantity: number
+  onChangeHandler?: (value: string) => any
+}
 
 function QuantitySelector({ initialQuantity, onChangeHandler }: Props) {
-  const [quantity, setQuantity] = React.useState(initialQuantity);
+  const [quantity, setQuantity] = React.useState(initialQuantity)
   const quantityArray = Array.from(
     { length: initialQuantity },
     (_, x: number) => ++x,
-  );
+  )
   const options = quantityArray.map((qty) => (
     <option key={qty} value={qty}>
       {qty}
     </option>
-  ));
+  ))
 
   const quantityHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setQuantity(quantity);
+    setQuantity(quantity)
 
     if (typeof onChangeHandler === 'function') {
-      onChangeHandler(e.target.value);
+      onChangeHandler(e.target.value)
     }
-  };
+  }
 
   return (
     <ListGroupItem>
@@ -37,7 +37,7 @@ function QuantitySelector({ initialQuantity, onChangeHandler }: Props) {
         </Col>
       </Row>
     </ListGroupItem>
-  );
+  )
 }
 
-export default QuantitySelector;
+export default QuantitySelector

@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import * as React from 'react'
+import { Container } from 'react-bootstrap'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import Footer from './components/Footer';
-import GlobalLoader from './components/GlobalLoader';
-import Header from './components/Header';
-import { CartProvider } from './context/cart-context';
+import Footer from './components/Footer'
+import GlobalLoader from './components/GlobalLoader'
+import Header from './components/Header'
+import { CartProvider } from './context/cart-context'
 
-const HomePage = React.lazy(() => import('./pages/HomePage'));
-const ProductPage = React.lazy(() => import('./pages/ProductPage'));
-const CartPage = React.lazy(() => import('./pages/CartPage'));
+const HomePage = React.lazy(() => import('./pages/HomePage'))
+const ProductPage = React.lazy(() => import('./pages/ProductPage'))
+const CartPage = React.lazy(() => import('./pages/CartPage'))
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <GlobalLoader />
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

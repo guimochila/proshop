@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom'
+import { Container, Nav, Navbar } from 'react-bootstrap'
+import { FaShoppingCart, FaUser } from 'react-icons/fa'
 
 function Header() {
   return (
@@ -24,7 +24,7 @@ function Header() {
         </Container>
       </Navbar>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

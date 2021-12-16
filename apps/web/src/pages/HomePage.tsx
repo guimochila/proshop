@@ -1,16 +1,16 @@
-import { Col, Row } from 'react-bootstrap';
-import Product from '../components/Product';
-import useProducts from '../hooks/useProducts';
+import { Col, Row } from 'react-bootstrap'
+import Product from '../components/Product'
+import useProducts from '../hooks/useProducts'
 
 function HomePage() {
-  const { data: products, isLoading } = useProducts();
+  const { data: products, isLoading } = useProducts()
 
   if (isLoading) {
-    return <span> Loading...</span>;
+    return <span> Loading...</span>
   }
 
   if (!products) {
-    return <span>No products found</span>;
+    return <span>No products found</span>
   }
 
   return (
@@ -24,7 +24,7 @@ function HomePage() {
         ))}
       </Row>
     </>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

@@ -1,8 +1,8 @@
-import { Spinner } from 'react-bootstrap';
-import { useIsFetching } from 'react-query';
+import { Spinner } from 'react-bootstrap'
+import { useIsFetching } from 'react-query'
 
 function GlobalLoader() {
-  const isFetching = useIsFetching();
+  const isFetching = useIsFetching()
 
   return (
     <Spinner
@@ -16,7 +16,7 @@ function GlobalLoader() {
         opacity: isFetching ? 1 : 0,
       }}
     />
-  );
+  )
 }
 
-export default GlobalLoader;
+export default GlobalLoader

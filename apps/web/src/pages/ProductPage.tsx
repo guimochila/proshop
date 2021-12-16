@@ -1,24 +1,24 @@
-import * as React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Row, Col, Image, ListGroup } from 'react-bootstrap';
-import Rating from '../components/Rating';
-import useProduct from '../hooks/useProduct';
-import PriceDetails from '../components/PriceDetails';
+import * as React from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { Row, Col, Image, ListGroup } from 'react-bootstrap'
+import Rating from '../components/Rating'
+import useProduct from '../hooks/useProduct'
+import PriceDetails from '../components/PriceDetails'
 
 function ProductPage() {
   /* Params: id: string */
-  const params = useParams();
-  const { data: product, isLoading } = useProduct(params.id || '');
+  const params = useParams()
+  const { data: product, isLoading } = useProduct(params.id || '')
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <span>Loading...</span>
   }
 
   if (!product) {
-    return <span>Product not found</span>;
+    return <span>Product not found</span>
   }
 
-  const { image, name, rating, numReviews, price, description } = product;
+  const { image, name, rating, numReviews, price, description } = product
 
   return (
     <>
@@ -50,7 +50,7 @@ function ProductPage() {
         </Col>
       </Row>
     </>
-  );
+  )
 }
 
-export default ProductPage;
+export default ProductPage

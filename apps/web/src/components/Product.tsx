@@ -1,25 +1,25 @@
-import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
-import Rating from './Rating';
+import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
+import Rating from './Rating'
 
-import styles from '../styles/Product.module.css';
+import styles from '../styles/Product.module.css'
 
 export type ProductItem = {
-  _id: string;
-  name: string;
-  image: string;
-  description: string;
-  brand: string;
-  category: string;
-  price: number;
-  countInStock: number;
-  rating: number;
-  numReviews: number;
-};
+  _id: string
+  name: string
+  image: string
+  description: string
+  brand: string
+  category: string
+  price: number
+  countInStock: number
+  rating: number
+  numReviews: number
+}
 
 type Props = {
-  item: ProductItem;
-};
+  item: ProductItem
+}
 
 function Product({ item }: Props) {
   return (
@@ -40,7 +40,7 @@ function Product({ item }: Props) {
         <Card.Text as="h3">$ {item.price}</Card.Text>
       </Card.Body>
     </Card>
-  );
+  )
 }
 
-export default Product;
+export default Product

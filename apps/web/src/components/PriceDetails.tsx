@@ -1,18 +1,18 @@
-import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap';
-import { useCart } from '../context/cart-context';
+import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap'
+import { useCart } from '../context/cart-context'
 
-import { ProductItem } from './Product';
-import QuantitySelector from './QuantitySelector';
+import { ProductItem } from './Product'
+import QuantitySelector from './QuantitySelector'
 
 type PriceDetailsProps = {
-  product: ProductItem;
-};
+  product: ProductItem
+}
 
 function PriceDetails({ product }: PriceDetailsProps) {
-  const { state, actions } = useCart();
-  const { price, countInStock } = product;
+  const { state, actions } = useCart()
+  const { price, countInStock } = product
 
-  console.log(state);
+  console.log(state)
   return (
     <Card>
       <ListGroup variant="flush">
@@ -45,7 +45,7 @@ function PriceDetails({ product }: PriceDetailsProps) {
         </ListGroup.Item>
       </ListGroup>
     </Card>
-  );
+  )
 }
 
-export default PriceDetails;
+export default PriceDetails
