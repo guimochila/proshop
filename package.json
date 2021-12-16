@@ -11,7 +11,8 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "precommit": "turbo run precommit"
   },
   "turbo": {
     "pipeline": {
