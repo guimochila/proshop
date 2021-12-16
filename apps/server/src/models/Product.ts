@@ -1,17 +1,17 @@
-import { Schema, model, ObjectId, SchemaTypes } from 'mongoose';
-import { Review, reviewSchema } from './Review';
+import { Schema, model, ObjectId, SchemaTypes } from 'mongoose'
+import { Review, reviewSchema } from './Review'
 
 interface Product {
-  user: ObjectId;
-  image: string;
-  brand: string;
-  category: string;
-  description: string;
-  rating: number;
-  numReviews: number;
-  price: number;
-  countInStock: number;
-  reviews: [Review];
+  user: ObjectId
+  image: string
+  brand: string
+  category: string
+  description: string
+  rating: number
+  numReviews: number
+  price: number
+  countInStock: number
+  reviews: [Review]
 }
 
 const productSchema = new Schema<Product>(
@@ -34,8 +34,8 @@ const productSchema = new Schema<Product>(
   {
     timestamps: true,
   },
-);
+)
 
-const Product = model('Product', productSchema);
+const Product = model('Product', productSchema)
 
-export default Product;
+export default Product

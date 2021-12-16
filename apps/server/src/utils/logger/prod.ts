@@ -1,6 +1,6 @@
-import { format, createLogger, transports } from 'winston';
+import { format, createLogger, transports } from 'winston'
 
-const { timestamp, combine, json, errors } = format;
+const { timestamp, combine, json, errors } = format
 
 function buildProdLogger() {
   const levels = {
@@ -10,13 +10,13 @@ function buildProdLogger() {
     warn: 40,
     error: 50,
     fatal: 60,
-  };
+  }
 
   return createLogger({
     format: combine(timestamp(), errors({ stack: true }), json()),
     levels,
     transports: [new transports.Console()],
-  });
+  })
 }
 
-export default buildProdLogger;
+export default buildProdLogger

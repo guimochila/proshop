@@ -1,17 +1,17 @@
-import express from 'express';
-import { getAuthRoutes } from './authentication';
-import { getProductsRoutes } from './products';
-import { getUserRoutes } from './user';
+import express from 'express'
+import { getAuthRoutes } from './authentication'
+import { getProductsRoutes } from './products'
+import { getUserRoutes } from './user'
 
 function getRoutes() {
   // create a router for all the routes for the app
-  const router = express.Router();
+  const router = express.Router()
 
-  router.use('/products', getProductsRoutes());
-  router.use('/auth', getAuthRoutes());
-  router.use('/user', getUserRoutes());
+  router.use('/products', getProductsRoutes())
+  router.use('/auth', getAuthRoutes())
+  router.use('/user', getUserRoutes())
 
-  return router;
+  return router
 }
 
-export { getRoutes };
+export { getRoutes }

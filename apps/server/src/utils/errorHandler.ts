@@ -1,10 +1,10 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express'
 
 type AsyncHandler = (
   req: Request,
   res: Response,
   next: NextFunction,
-) => Promise<Error | any>;
+) => Promise<Error | any>
 
 /*
   Catch Errors Handler
@@ -14,8 +14,8 @@ type AsyncHandler = (
 */
 function catchErrors(fn: AsyncHandler): RequestHandler {
   return function (req, res, next) {
-    return fn(req, res, next).catch(next);
-  };
+    return fn(req, res, next).catch(next)
+  }
 }
 
 /*
@@ -23,14 +23,14 @@ function catchErrors(fn: AsyncHandler): RequestHandler {
   If we hit a route that is not found, we mark it as 404 and pass it along to the next error handler to display
 */
 interface HttpError extends Error {
-  status: number;
-  message: string;
+  status: number
+  message: string
 }
 
 function notFound(req: Request, res: Response, next: NextFunction) {
-  const error = new Error(`Not found - ${req.originalUrl}`) as HttpError;
-  error.status = 404;
-  next(error);
+  const error = new Error(`Not found - ${req.originalUrl}`) as HttpError
+  error.status = 404
+  next(error)
 }
 
 /*
@@ -39,14 +39,14 @@ function notFound(req: Request, res: Response, next: NextFunction) {
 */
 
 function handleDevErrors(err: HttpError, res: Response) {
-  const status = err.status || res.statusCode === 200 ? 500 : res.statusCode;
+  const status = err.status || res.statusCode === 200 ? 500 : res.statusCode
 
   res.status(status).json({
     status,
     message: err.message,
     error: err,
     stack: err.stack || '',
-  });
+  })
 }
 
 /*
@@ -54,9 +54,7 @@ function handleDevErrors(err: HttpError, res: Response) {
   No stacktraces are leaked to user
 */
 function handleProdErrors(res: Response) {
-  res
-    .status(500)
-    .json({ status: 500, message: 'Ooops! Something went wrong!' });
+  res.status(500).json({ status: 500, message: 'Ooops! Something went wrong!' })
 }
 
 function globalErrorHandler(
@@ -66,10 +64,10 @@ function globalErrorHandler(
   next: NextFunction,
 ) {
   if (process.env.NODE_ENV === 'production') {
-    handleProdErrors(res);
+    handleProdErrors(res)
   } else {
-    handleDevErrors(err, res);
+    handleDevErrors(err, res)
   }
 }
 
-export { catchErrors, globalErrorHandler, notFound };
+export { catchErrors, globalErrorHandler, notFound }

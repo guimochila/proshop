@@ -1,26 +1,26 @@
-import config from 'config';
-import morgan, { StreamOptions } from 'morgan';
-import { Logger } from 'winston';
-import buildDevLogs from './dev';
-import buildProdLogger from './prod';
+import config from 'config'
+import morgan, { StreamOptions } from 'morgan'
+import { Logger } from 'winston'
+import buildDevLogs from './dev'
+import buildProdLogger from './prod'
 
-let logger: Logger;
+let logger: Logger
 
-const env = config.get<string>('env');
+const env = config.get<string>('env')
 
 if (env === 'development') {
-  logger = buildDevLogs();
+  logger = buildDevLogs()
 } else {
-  logger = buildProdLogger();
+  logger = buildProdLogger()
 }
 
 const stream: StreamOptions = {
   // Use the http severity
   write: (message) => logger.http(message),
-};
+}
 const httpLogger = morgan(
   ':method :url :status :res[content-length] - :response-time ms',
   { stream },
-);
+)
 
-export { logger, httpLogger };
+export { logger, httpLogger }

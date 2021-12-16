@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
 export interface Review {
-  name: string;
-  rating: number;
-  comment: string;
+  name: string
+  rating: number
+  comment: string
 }
 
 export const reviewSchema = new Schema<Review>(
@@ -15,8 +15,8 @@ export const reviewSchema = new Schema<Review>(
   {
     timestamps: true,
   },
-);
+)
 
-const Review = model('Review', reviewSchema);
+const Review = model('Review', reviewSchema)
 
-export default Review;
+export default Review

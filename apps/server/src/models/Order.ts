@@ -1,40 +1,40 @@
-import { Schema, model, ObjectId, SchemaTypes } from 'mongoose';
+import { Schema, model, ObjectId, SchemaTypes } from 'mongoose'
 
 interface OrderItem {
-  name: string;
-  quantity: string;
-  image: string;
-  price: string;
-  product: ObjectId;
+  name: string
+  quantity: string
+  image: string
+  price: string
+  product: ObjectId
 }
 
 interface ShippingAddress {
-  address: string;
-  city: string;
-  postalCode: string;
-  country: string;
+  address: string
+  city: string
+  postalCode: string
+  country: string
 }
 
 interface PaymentResult {
-  id: string;
-  status: string;
-  updateTime: string;
-  emailAddress: string;
+  id: string
+  status: string
+  updateTime: string
+  emailAddress: string
 }
 
 interface Order {
-  user: ObjectId;
-  orderItems: [OrderItem];
-  shippingAddress: ShippingAddress;
-  paymentMethod: string;
-  paymentResult: PaymentResult;
-  taxPrice: number;
-  shippingPrice: number;
-  totalPrice: number;
-  isPaid: boolean;
-  paidAt: Date;
-  isDelivered: boolean;
-  deliveredAt: Date;
+  user: ObjectId
+  orderItems: [OrderItem]
+  shippingAddress: ShippingAddress
+  paymentMethod: string
+  paymentResult: PaymentResult
+  taxPrice: number
+  shippingPrice: number
+  totalPrice: number
+  isPaid: boolean
+  paidAt: Date
+  isDelivered: boolean
+  deliveredAt: Date
 }
 
 const orderSchema = new Schema<Order>(
@@ -76,8 +76,8 @@ const orderSchema = new Schema<Order>(
   {
     timestamps: true,
   },
-);
+)
 
-const Order = model('Order', orderSchema);
+const Order = model('Order', orderSchema)
 
-export default Order;
+export default Order
