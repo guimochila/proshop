@@ -1,14 +1,20 @@
 import { Schema, model } from 'mongoose';
+import type { Document } from 'mongoose';
 import validator from 'validator';
+import bcrypt from 'bcryptjs';
 
-interface User {
+interface IUser {
   name: string;
   email: string;
   password: string;
   isAdmin: boolean;
 }
 
-const userSchema = new Schema<User>(
+interface UserDocument extends IUser, Document {
+  checkPassword: (password: string) => Promise<boolean>;
+}
+
+const userSchema = new Schema<UserDocument>(
   {
     name: { type: String, required: true, trim: true },
     email: {
@@ -25,6 +31,10 @@ const userSchema = new Schema<User>(
     timestamps: true,
   },
 );
+
+userSchema.methods.checkPassword = async function (password: string) {
+  return await bcrypt.compare(password, this.password);
+};
 
 const User = model('User', userSchema);
 

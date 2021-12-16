@@ -3,13 +3,16 @@ import { Col, Form, ListGroupItem, Row } from 'react-bootstrap';
 
 type Props = {
   initialQuantity: number;
-  onChangeHandler: (value: string) => any;
+  onChangeHandler?: (value: string) => any;
 };
 
 function QuantitySelector({ initialQuantity, onChangeHandler }: Props) {
   const [quantity, setQuantity] = React.useState(initialQuantity);
-  console.log(initialQuantity);
-  const options = Array.from(Array(quantity).keys()).map((qty) => (
+  const quantityArray = Array.from(
+    { length: initialQuantity },
+    (_, x: number) => ++x,
+  );
+  const options = quantityArray.map((qty) => (
     <option key={qty} value={qty}>
       {qty}
     </option>
