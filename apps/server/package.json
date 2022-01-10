@@ -33,7 +33,6 @@
     "sample:remove": "ts-node ./data/load-sample-data.ts --delete",
     "precommit": "lint-staged",
     "typeorm": "ts-node-dev -r tsconfig-paths/register tools/typeormcli.ts --config ./src/config/ormconfig.ts",
-    "seed:generate": "yarn typeorm migration:generate -c seed -n InsertProductSamples",
     "seed:run": "yarn typeorm migration:run -c seed",
     "seed:revert": "yarn typeorm migration:revert -c seed"
   },

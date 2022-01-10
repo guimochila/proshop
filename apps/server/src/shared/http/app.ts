@@ -7,6 +7,7 @@ import { httpLogger } from '../../utils/logger'
 import routes from './routes'
 import AppError from '@shared/errors/AppError'
 
+const isProd = process.env.NODE_ENV === 'production'
 const app = express()
 
 app.use(httpLogger)
@@ -32,18 +33,20 @@ app.use('/api', routes)
 /* Handling Errors */
 app.use(errors())
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+  const stack = isProd ? error.stack : undefined
+
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       status: 'error',
       message: error.message,
+      stack,
     })
   }
-
-  console.log(error.stack)
 
   return res.status(500).json({
     status: 'error',
     message: 'Internal Server Error',
+    stack,
   })
 })
 
