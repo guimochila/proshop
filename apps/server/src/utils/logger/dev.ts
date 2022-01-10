@@ -1,5 +1,4 @@
 import { format, createLogger, transports } from 'winston'
-import config from 'config'
 const { timestamp, combine, printf, errors } = format
 
 function buildDevLogs() {
@@ -7,7 +6,7 @@ function buildDevLogs() {
     return `${timestamp} ${level}: ${stack || message}`
   })
 
-  const level = config.get<string>('logLevel')
+  const level = process.env.LOG_LEVEL
 
   const levels = {
     http: 10,

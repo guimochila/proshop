@@ -1,19 +1,14 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import { createServer } from 'http'
-import config from 'config'
+import '@shared/typeorm'
 import app from './app'
-import { logger } from './utils/logger'
-
-/* Initialize database */
-import { init } from './utils/database'
-init()
-
-/* Http server */
-const PORT = config.get('port')
-const HOST = config.get('host')
+import { logger } from '../../utils/logger'
 
 const server = createServer(app)
+const PORT = process.env.PORT
 
-server.listen(PORT, () => logger.info(`Server started at: ${HOST}:${PORT}`))
+server.listen(PORT, () => logger.info(`🚀 Server started at ${PORT}`))
 
 /* Unhandled Rejection and Expection */
 process.on('uncaughtException', (error) => {

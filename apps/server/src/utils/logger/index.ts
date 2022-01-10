@@ -1,4 +1,3 @@
-import config from 'config'
 import morgan, { StreamOptions } from 'morgan'
 import { Logger } from 'winston'
 import buildDevLogs from './dev'
@@ -6,12 +5,10 @@ import buildProdLogger from './prod'
 
 let logger: Logger
 
-const env = config.get<string>('env')
-
-if (env === 'development') {
-  logger = buildDevLogs()
-} else {
+if (process.env.NODE_ENV === 'production') {
   logger = buildProdLogger()
+} else {
+  logger = buildDevLogs()
 }
 
 const stream: StreamOptions = {
