@@ -32,7 +32,7 @@
     "sample": "ts-node ./data/load-sample-data.ts",
     "sample:remove": "ts-node ./data/load-sample-data.ts --delete",
     "precommit": "lint-staged",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register tools/typeormcli.ts --config ./src/config/ormconfig.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register src/tools/typeormcli.ts --config ./src/config/ormconfig.ts",
     "seed:run": "yarn typeorm migration:run -c seed",
     "seed:revert": "yarn typeorm migration:revert -c seed"
   },
