@@ -6,6 +6,8 @@ import Joi from 'joi'
 const usersRouter = Router()
 const usersCtrl = new UsersController()
 
+usersRouter.get('/', usersCtrl.index)
+
 usersRouter.post(
   '/',
   celebrate({

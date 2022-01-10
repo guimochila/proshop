@@ -3,7 +3,7 @@ import 'express-async-errors'
 import helmet from 'helmet'
 import cors from 'cors'
 import { errors } from 'celebrate'
-import { httpLogger } from '../../utils/logger'
+import { httpLogger } from './logger'
 import routes from './routes'
 import AppError from '@shared/errors/AppError'
 

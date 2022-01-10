@@ -3,7 +3,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 import { createServer } from 'http'
 import '@shared/typeorm'
 import app from './app'
-import { logger } from '../../utils/logger'
+import { logger } from './logger'
 
 const server = createServer(app)
 const PORT = process.env.PORT
