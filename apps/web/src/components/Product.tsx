@@ -5,7 +5,7 @@ import Rating from './Rating'
 import styles from '../styles/Product.module.css'
 
 export type ProductItem = {
-  _id: string
+  id: string
   name: string
   image: string
   description: string
@@ -14,7 +14,7 @@ export type ProductItem = {
   price: number
   countInStock: number
   rating: number
-  numReviews: number
+  num_reviews: number
 }
 
 type Props = {
@@ -24,18 +24,18 @@ type Props = {
 function Product({ item }: Props) {
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`/product/${item._id}`}>
+      <Link to={`/product/${item.id}`}>
         <Card.Img src={item.image} variant="top" />
       </Link>
       <Card.Body>
         <Card.Title as="div">
-          <Link to={`/product/${item._id}`}>
+          <Link to={`/product/${item.id}`}>
             <strong className={styles.productTitle}>{item.name}</strong>
           </Link>
         </Card.Title>
 
         <Card.Text as="div">
-          <Rating value={item.rating} numReviews={item.numReviews} />
+          <Rating value={item.rating} numReviews={item.num_reviews} />
         </Card.Text>
         <Card.Text as="h3">$ {item.price}</Card.Text>
       </Card.Body>

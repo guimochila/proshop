@@ -18,7 +18,7 @@ function HomePage() {
       <h1>Latest Products</h1>
       <Row>
         {Object.keys(products).map((item) => (
-          <Col key={products[item]._id} sm={6} md={6} lg={4} xl={3}>
+          <Col key={products[item].id} sm={6} md={6} lg={4} xl={3}>
             <Product item={products[item]} />
           </Col>
         ))}

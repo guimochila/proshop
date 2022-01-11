@@ -18,7 +18,7 @@ function ProductPage() {
     return <span>Product not found</span>
   }
 
-  const { image, name, rating, numReviews, price, description } = product
+  const { image, name, rating, num_reviews, price, description } = product
 
   return (
     <>
@@ -35,7 +35,7 @@ function ProductPage() {
               <h3>{name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Rating value={rating} numReviews={numReviews} />
+              <Rating value={rating} numReviews={num_reviews} />
             </ListGroup.Item>
             <ListGroup.Item>
               <p>Price: ${price}</p>
