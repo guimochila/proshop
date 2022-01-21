@@ -35,6 +35,10 @@ app.use(errors())
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   const stack = isProd ? error.stack : undefined
 
+  if (!isProd) {
+    console.log(error)
+  }
+
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       status: 'error',
